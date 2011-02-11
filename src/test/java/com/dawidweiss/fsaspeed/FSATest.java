@@ -76,6 +76,7 @@ public abstract class FSATest<T> extends AbstractBenchmark
     public static void prepareSeekTerms() throws Exception
     {
         seekTerms = linesFromFile(new File("data-sets/seek-terms-unit2-20110115.txt"));
+        System.out.println(seekTerms.size());
     }
 
     /**
@@ -96,23 +97,23 @@ public abstract class FSATest<T> extends AbstractBenchmark
     /**
      * Run traversal speed test using <tt>seek-terms-unit2-20110115.txt</tt>.
      */
-    @BenchmarkOptions(callgc = false, warmupRounds = 3, benchmarkRounds = 10)
+    @BenchmarkOptions(callgc = false, warmupRounds = 3, benchmarkRounds = 20)
     @Test
-    public void seekTermsTraversal()
+    public void seekTermsTraversal() throws Exception
     {
         assumeNotNull(cache.smallFSA);
-        System.out.println("#> " + traversal.seek(cache.smallFSA, seekTerms));
+        traversal.seek(cache.smallFSA, seekTerms);
     }
 
     /**
      * Run long test using <tt>allterms-20110115.txt</tt>.
      */
-    @BenchmarkOptions(callgc = false, warmupRounds = 3, benchmarkRounds = 10)
+    @BenchmarkOptions(callgc = false, warmupRounds = 3, benchmarkRounds = 20)
     @Test
-    public void allTermsTraversal()
+    public void allTermsTraversal() throws Exception
     {
         assumeNotNull(cache.allTermsFSA);
-        System.out.println("#> " + traversal.seek(cache.allTermsFSA, seekTerms));
+        traversal.seek(cache.allTermsFSA, seekTerms);
     }
 
     /**
