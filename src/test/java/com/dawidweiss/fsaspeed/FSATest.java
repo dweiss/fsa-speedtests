@@ -76,7 +76,6 @@ public abstract class FSATest<T> extends AbstractBenchmark
     public static void prepareSeekTerms() throws Exception
     {
         seekTerms = linesFromFile(new File("data-sets/seek-terms-unit2-20110115.txt"));
-        System.out.println(seekTerms.size());
     }
 
     /**
