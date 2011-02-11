@@ -19,3 +19,10 @@ head -n 500000 allterms-20110115.txt | sort > small.txt
 # md5sum.exe  *.txt
 # af580137175dbebe8145e60895b23570 *allterms-20110115.txt
 # a646e60d97abe664416aa007f14dcf8f *seek-terms-unit2-20110115.txt
+
+# Generate Eclipse project files from maven:
+#
+# mvn eclipse:eclipse
+#
+# and then manually add lucene as a project dependency (so that you can tweak and tune and run tests at the same time).
+#
