@@ -118,7 +118,7 @@ public abstract class FSATest<T> extends AbstractBenchmark
     /**
      * Read all lines from a given file.
      */
-    private static ArrayList<byte []> linesFromFile(File file) throws IOException
+    public static ArrayList<byte []> linesFromFile(File file) throws IOException
     {
         final InputStream is = new BufferedInputStream(new FileInputStream(file));
         final ArrayList<byte []> result = Lists.newArrayList();
