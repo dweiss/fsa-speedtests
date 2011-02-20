@@ -1,28 +1,21 @@
-#!/bin/bash
 
-# Data sets required for the runs.
+Benchmarks of FST/FSA performance
+---------------------------------
 
-mkdir data-sets
-cd data-sets
-wget http://people.apache.org/~mikemccand/wikiterms/allterms-20110115.txt.bz2
-wget http://people.apache.org/~mikemccand/wikiterms/seek-terms-unit2-20110115.txt.bz2
-bunzip2 allterms-20110115.txt.bz2
-bunzip2 seek-terms-unit2-20110115.txt.bz2
-grep -v "open commit=single" allterms-20110115.txt > allterms-20110115.fixed
-mv allterms-20110115.fixed allterms-20110115.txt
+Implementations: 
 
-export LC_ALL=C
-head -n 500000 allterms-20110115.txt | sort > small.txt
+- Lucene FST
+- Morfologik FSA
 
-# Check for correctness if you like
 
-# md5sum.exe  *.txt
-# af580137175dbebe8145e60895b23570 *allterms-20110115.txt
-# a646e60d97abe664416aa007f14dcf8f *seek-terms-unit2-20110115.txt
+Installation
+------------
 
-# Generate Eclipse project files from maven:
-#
-# mvn eclipse:eclipse
-#
-# and then manually add lucene as a project dependency (so that you can tweak and tune and run tests at the same time).
-#
+bash CONFIGURE.datasets         # Downloads data sets and unpacks them.
+bash CONFIGURE.workspace        # Configures Maven deps. and Eclipse workspace.
+
+
+Benchmark execution
+-------------------
+
+[TODO]

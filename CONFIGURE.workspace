@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Install non-Maven Caliper dependencies.
+mvn install:install-file -DgroupId=com.google.code.java-allocation-instrumenter -DartifactId=java-allocation-instrumenter -Dversion=2.0 -Dfile=lib/allocation.jar -Dpackaging=jar -DgeneratePom=true
+
+# Install Lucene trunk JAR
+mvn install:install-file -DgroupId=org.apache.lucene -DartifactId=lucene-core -Dversion=4.0-SNAPSHOT -Dfile=lib/lucene-core-4.0-SNAPSHOT.jar -Dpackaging=jar -DgeneratePom=true
+
+# Generate Eclipse project files from maven:
+mvn eclipse:eclipse
