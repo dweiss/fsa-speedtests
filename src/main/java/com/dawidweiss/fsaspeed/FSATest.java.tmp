@@ -25,8 +25,8 @@ import com.google.common.collect.Maps;
  */
 public abstract class FSATest<T> extends AbstractBenchmark
 {
-    private FSAProvider<T> provider;
-    private FSATraversal<T> traversal;
+    private FSACompiler<T> provider;
+    private FSAExactMatcher<T> traversal;
 
     /**
      * @see FSATest#fsas
@@ -63,7 +63,7 @@ public abstract class FSATest<T> extends AbstractBenchmark
     /**
      * 
      */
-    public FSATest(FSAProvider<T> provider, FSATraversal<T> traversal)
+    public FSATest(FSACompiler<T> provider, FSAExactMatcher<T> traversal)
     {
         this.provider = provider;
         this.traversal = traversal;

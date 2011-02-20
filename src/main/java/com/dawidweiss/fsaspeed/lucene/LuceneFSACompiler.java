@@ -1,44 +1,38 @@
-package com.dawidweiss.fsaspeed;
+package com.dawidweiss.fsaspeed.lucene;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.File;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.lucene.store.*;
-import org.apache.lucene.util.automaton.fst.*;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.IndexOutput;
 import org.apache.lucene.util.BytesRef;
+import org.apache.lucene.util.automaton.fst.Builder;
+import org.apache.lucene.util.automaton.fst.FST;
+import org.apache.lucene.util.automaton.fst.NoOutputs;
 
-public final class LuceneFSAProvider implements FSAProvider<FST<Object>>
+import com.dawidweiss.fsaspeed.FSACompiler;
+
+/**
+ * 
+ */
+public final class LuceneFSACompiler implements FSACompiler
 {
     @Override
-    public FST<Object> compile(File file) throws Exception
+    public void compile(File input, File fsaFile) throws Exception
     {
-        File fsaFile = new File(FilenameUtils.removeExtension(file.getAbsolutePath())
-            + ".lucene");
-
-        if (!fsaFile.exists())
-        {
-            Directory dir = FSDirectory.open(fsaFile);
-            IndexOutput out = dir.createOutput("fst.bin");
-            FST<Object> fst = compile0(file);
-            fst.save(out);
-            out.close();
-            dir.close();
-        }
+        if (fsaFile.exists())
+            throw new IOException("Output already exist: " + fsaFile);
 
         Directory dir = FSDirectory.open(fsaFile);
-        IndexInput in = dir.openInput("fst.bin");
-        try
-        {
-            return new FST<Object>(in, NoOutputs.getSingleton());
-        }
-        finally
-        {
-            in.close();
-        }
+        IndexOutput out = dir.createOutput("fst.bin");
+        FST<Object> fst = compile0(input);
+        fst.save(out);
+        out.close();
+        dir.close();
     }
 
     public FST<Object> compile0(File file) throws IOException

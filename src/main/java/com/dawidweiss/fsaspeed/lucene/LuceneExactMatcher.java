@@ -1,4 +1,4 @@
-package com.dawidweiss.fsaspeed;
+package com.dawidweiss.fsaspeed.lucene;
 
 import java.util.List;
 
@@ -6,11 +6,21 @@ import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.automaton.fst.FST;
 import org.apache.lucene.util.automaton.fst.Util;
 
-public final class LuceneFSATraversal implements FSATraversal<FST<Object>>
+import com.dawidweiss.fsaspeed.FSAExactMatcher;
+
+public final class LuceneExactMatcher implements FSAExactMatcher
 {
-    public int seek(FST<Object> t, List<byte []> sequences) throws Exception
+    private FST<Object> fst;
+
+    public LuceneExactMatcher(FST<Object> fst)
     {
-        final FST<Object> fst = t;
+        this.fst = fst;
+    }
+
+    @Override
+    public int seek(List<byte []> sequences) throws Exception
+    {
+        FST<Object> fst = this.fst;
 
         final BytesRef term = new BytesRef();
         int matches = 0;
