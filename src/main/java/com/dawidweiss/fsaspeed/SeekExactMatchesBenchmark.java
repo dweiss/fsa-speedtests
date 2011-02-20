@@ -23,20 +23,24 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
      * Implementations. Use command-line for filtering.
      */
     @Param
-    private FSTImplementations implementation;
+    public Implementations implementation;
 
     /**
      * Data set names (compiled). Use command-line to override.
      */
     @Param({"allterms-20110115"})
-    private String dataSet;
+    public String dataSet;
 
     /**
      * Test sequence files.
      */
-    @Param({"data-sets/seek-terms-unit2-20110115.txt"})
-    private String testFile;
-    
+    @Param({"data-sets/seek-terms-unit2-20110115.txt", 
+            "data-sets/sample-all-matches.txt",
+            "data-sets/sample-all-prefixes.txt",
+            "data-sets/sample-no-matches.txt",
+    })
+    public String testFile;
+
     /**
      * Test sequences.
      */
@@ -47,7 +51,7 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
      */
     private FSAExactMatcher matcher;
 
-    private enum FSTImplementations
+    public enum Implementations
     {
         FSA5
         {
@@ -103,7 +107,7 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
     public int timeExactSeeks(int reps) throws Exception
     {
         int seeks = 0;
-        for (int i = 0; i < 10 * reps; i++)
+        for (int i = 0; i < reps; i++)
         {
             seeks += matcher.seek(testSequences);
         }
@@ -114,8 +118,10 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
     {
         Runner.main(SeekExactMatchesBenchmark.class, new String [] {
             "-Jserver=-server",
+            //"-Jbatch=-Xbatch",
+            //"-Jcomp=-Xcomp",
             "--timeUnit", "ms",
-            // "--debug", "--debug-reps", "1"
+             //"--debug", "--debug-reps", "10"
         });
     }
 }

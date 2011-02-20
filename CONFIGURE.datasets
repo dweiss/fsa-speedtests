@@ -11,11 +11,23 @@ bunzip2 seek-terms-unit2-20110115.txt.bz2
 grep -v "open commit=single" allterms-20110115.txt > allterms-20110115.fixed
 mv allterms-20110115.fixed allterms-20110115.txt
 
-export LC_ALL=C
-head -n 500000 allterms-20110115.txt | sort > small.txt
-
 # Check for correctness if you like
-
 # md5sum.exe  *.txt
 # af580137175dbebe8145e60895b23570 *allterms-20110115.txt
 # a646e60d97abe664416aa007f14dcf8f *seek-terms-unit2-20110115.txt
+
+# create sub-sample collections
+
+LINES=171735                       # make the sub-samples exactly the same in size.
+export LC_ALL=C                    # c-sort order
+
+shuf -n $LINES allterms-20110115.txt --random-source=seek-terms-unit2-20110115.txt \
+  | sort > sample-all-matches.txt
+
+cat sample-all-matches.txt \
+  | ruby -ne 'puts ("%s__UNIQUE_TOKEN" % [$_.chop])' \
+  | sort > sample-all-prefixes.txt
+
+cat sample-all-matches.txt \
+  | ruby -ne 'puts ("__UNIQUE_%s" % [$_.chop])' \
+  | sort > sample-no-matches.txt
