@@ -1,21 +1,27 @@
 
-Benchmarks of FST/FSA performance
----------------------------------
+# Benchmarks of FST/FSA performance
+# ---------------------------------
 
-Implementations: 
+# Implementations: 
 
-- Lucene FST
-- Morfologik FSA
+# - Lucene FST
+# - Morfologik FSA
 
 
-Installation
-------------
+# Installation
+# ------------
 
 bash CONFIGURE.datasets         # Downloads data sets and unpacks them.
 bash CONFIGURE.workspace        # Configures Maven deps. and Eclipse workspace.
 
 
-Benchmark execution
--------------------
+# Benchmark execution
+# -------------------
 
-[TODO]
+mvn          # Compile everything.
+
+             # Run the benchmark [full]
+java -jar target\fsa-speedtests-0.0.1-SNAPSHOT.jar  
+
+             # Run the benchmark [limit to LUCENE/FSA5 and a single test file only.]
+java -jar -DtestFile=data-sets/sample-no-matches.txt -Dimplementation=LUCENE,FSA5             

@@ -16,29 +16,29 @@
   </properties>
 
   <repositories>
-  	<repository>
-  		<snapshots>
-  			<enabled>false</enabled>
-  		</snapshots>
-  		<id>sonatype-releases</id>
-  		<name>SonaType Releases Repository</name>
-  		<url>https://oss.sonatype.org/content/repositories/releases/</url>
-  	</repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>sonatype-releases</id>
+      <name>SonaType Releases Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/releases/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
-    	<groupId>org.carrot2</groupId>
-    	<artifactId>morfologik-stemming</artifactId>
-    	<version>1.5.1</version>
-    	<type>jar</type>
-    	<scope>compile</scope>
+      <groupId>org.carrot2</groupId>
+      <artifactId>morfologik-stemming</artifactId>
+      <version>1.5.1</version>
+      <type>jar</type>
+      <scope>compile</scope>
     </dependency>
     <dependency>
-    	<groupId>commons-io</groupId>
-    	<artifactId>commons-io</artifactId>
-    	<version>2.0.1</version>
-    	<type>jar</type>
-    	<scope>compile</scope>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.0.1</version>
+      <type>jar</type>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.google.code.caliper</groupId>
@@ -51,4 +51,40 @@
       <version>4.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.dawidweiss.fsaspeed.SeekExactMatchesBenchmark</mainClass>
+              <addClasspath>true</addClasspath>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

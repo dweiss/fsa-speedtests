@@ -37,7 +37,7 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
     @Param({"data-sets/seek-terms-unit2-20110115.txt", 
             "data-sets/sample-all-matches.txt",
             "data-sets/sample-all-prefixes.txt",
-            "data-sets/sample-no-matches.txt",
+            "data-sets/sample-no-matches.txt"
     })
     public String testFile;
 
@@ -116,12 +116,17 @@ public class SeekExactMatchesBenchmark extends SimpleBenchmark
 
     public static void main(String [] args) throws Exception
     {
-        Runner.main(SeekExactMatchesBenchmark.class, new String [] {
-            "-Jserver=-server",
-            //"-Jbatch=-Xbatch",
-            //"-Jcomp=-Xcomp",
-            "--timeUnit", "ms",
-             //"--debug", "--debug-reps", "10"
-        });
+        if (args.length == 0)
+        {
+            args = new String [] {
+                "-Jserver=-server",
+                //"-Jbatch=-Xbatch",
+                //"-Jcomp=-Xcomp",
+                "--timeUnit", "ms",
+                 //"--debug", "--debug-reps", "10"
+            };
+        }
+
+        Runner.main(SeekExactMatchesBenchmark.class, args);
     }
 }

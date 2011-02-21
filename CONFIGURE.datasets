@@ -11,6 +11,13 @@ bunzip2 seek-terms-unit2-20110115.txt.bz2
 grep -v "open commit=single" allterms-20110115.txt > allterms-20110115.fixed
 mv allterms-20110115.fixed allterms-20110115.txt
 
+# Precompiled automata
+cd ..
+wget http://ophelia.cs.put.poznan.pl/~dweiss/download/data-sets.compiled.tgz
+tar -zxf data-sets.compiled.tgz
+rm data-sets.compiled.tgz
+
+
 # Check for correctness if you like
 # md5sum.exe  *.txt
 # af580137175dbebe8145e60895b23570 *allterms-20110115.txt
