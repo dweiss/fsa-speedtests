@@ -25,6 +25,7 @@ rm data-sets.compiled.tgz
 
 # create sub-sample collections
 
+cd data-sets
 LINES=171735                       # make the sub-samples exactly the same in size.
 export LC_ALL=C                    # c-sort order
 
