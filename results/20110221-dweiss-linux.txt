@@ -1,0 +1,32 @@
+ 0% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=FSA5, testFile=data-sets/seek-terms-unit2-20110115.txt, server=-server} 128561197.00 ns; ?=4528133.20 ns @ 10 trials
+ 8% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=CFSA2, testFile=data-sets/seek-terms-unit2-20110115.txt, server=-server} 337997099.75 ns; ?=11614152.78 ns @ 10 trials
+17% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=LUCENE, testFile=data-sets/seek-terms-unit2-20110115.txt, server=-server} 130657231.29 ns; ?=3390897.60 ns @ 10 trials
+25% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=FSA5, testFile=data-sets/sample-all-matches.txt, server=-server} 207783735.00 ns; ?=3415083.50 ns @ 10 trials
+33% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=CFSA2, testFile=data-sets/sample-all-matches.txt, server=-server} 403254419.75 ns; ?=5263354.57 ns @ 10 trials
+42% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=LUCENE, testFile=data-sets/sample-all-matches.txt, server=-server} 266780606.67 ns; ?=10687037.78 ns @ 10 trials
+50% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=FSA5, testFile=data-sets/sample-all-prefixes.txt, server=-server} 219261354.75 ns; ?=4648794.60 ns @ 10 trials
+58% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=CFSA2, testFile=data-sets/sample-all-prefixes.txt, server=-server} 434930970.25 ns; ?=6452978.91 ns @ 10 trials
+67% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=LUCENE, testFile=data-sets/sample-all-prefixes.txt, server=-server} 290947106.83 ns; ?=11671059.84 ns @ 10 trials
+75% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=FSA5, testFile=data-sets/sample-no-matches.txt, server=-server} 69662875.68 ns; ?=888508.98 ns @ 10 trials
+83% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=CFSA2, testFile=data-sets/sample-no-matches.txt, server=-server} 179030119.80 ns; ?=3254143.11 ns @ 10 trials
+92% Scenario{vm=java, trial=0, benchmark=ExactSeeks, dataSet=allterms-20110115, implementation=LUCENE, testFile=data-sets/sample-no-matches.txt, server=-server} 64308917.14 ns; ?=575981.99 ns @ 3 trials
+
+implementation                                testFile    ms linear runtime
+          FSA5 data-sets/seek-terms-unit2-20110115.txt 128.6 ========
+          FSA5        data-sets/sample-all-matches.txt 207.8 ==============
+          FSA5       data-sets/sample-all-prefixes.txt 219.3 ===============
+          FSA5         data-sets/sample-no-matches.txt  69.7 ====
+         CFSA2 data-sets/seek-terms-unit2-20110115.txt 338.0 =======================
+         CFSA2        data-sets/sample-all-matches.txt 403.3 ===========================
+         CFSA2       data-sets/sample-all-prefixes.txt 434.9 ==============================
+         CFSA2         data-sets/sample-no-matches.txt 179.0 ============
+        LUCENE data-sets/seek-terms-unit2-20110115.txt 130.7 =========
+        LUCENE        data-sets/sample-all-matches.txt 266.8 ==================
+        LUCENE       data-sets/sample-all-prefixes.txt 290.9 ====================
+        LUCENE         data-sets/sample-no-matches.txt  64.3 ====
+
+vm: java
+trial: 0
+benchmark: ExactSeeks
+dataSet: allterms-20110115
+server: -server
