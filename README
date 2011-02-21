@@ -29,3 +29,13 @@ java -jar target/fsa-speedtests-0.0.1-SNAPSHOT.jar  -Jbatch=-Xbatch -Jcomp=-Xcom
 
              # Run the benchmark [limit to LUCENE/FSA5 and a single test file only.]
 java -jar -DtestFile=data-sets/sample-no-matches.txt -Dimplementation=LUCENE,FSA5             
+
+
+# Recompiling test data [example]
+# -------------------------------
+
+# mvn clean install
+
+# rm -rf data-sets.compiled/allterms-20110115/lucene
+# java -cp target/fsa-speedtests-0.0.1-SNAPSHOT.jar \
+#   com.dawidweiss.fsaspeed.lucene.LuceneFSACompiler data-sets\allterms-20110115.txt

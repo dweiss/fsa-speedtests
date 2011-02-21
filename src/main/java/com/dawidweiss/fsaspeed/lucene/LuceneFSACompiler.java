@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.IndexOutput;
@@ -14,6 +15,7 @@ import org.apache.lucene.util.automaton.fst.Builder;
 import org.apache.lucene.util.automaton.fst.FST;
 import org.apache.lucene.util.automaton.fst.NoOutputs;
 
+import com.dawidweiss.fsaspeed.DataSets;
 import com.dawidweiss.fsaspeed.FSACompiler;
 
 /**
@@ -21,6 +23,12 @@ import com.dawidweiss.fsaspeed.FSACompiler;
  */
 public final class LuceneFSACompiler implements FSACompiler
 {
+    public static void main(String [] args) throws Exception
+    {
+        File output = new File(DataSets.compiledFolder(FilenameUtils.getBaseName(args[0])), "lucene");
+        new LuceneFSACompiler().compile(new File(args[0]), output);
+    }
+
     @Override
     public void compile(File input, File fsaFile) throws Exception
     {
