@@ -22,10 +22,10 @@ bash CONFIGURE.workspace        # Configures Maven deps. and Eclipse workspace.
 mvn clean install
 
              # Run the benchmark [full]
-java -jar target\fsa-speedtests-0.0.1-SNAPSHOT.jar  
+java -jar target/fsa-speedtests-0.0.1-SNAPSHOT.jar  
 
              # Run the benchmark [precompilation, batch compiler]
-java -jar target\fsa-speedtests-0.0.1-SNAPSHOT.jar  -Jbatch=-Xbatch -Jcomp=-Xcomp
+java -jar target/fsa-speedtests-0.0.1-SNAPSHOT.jar  -Jbatch=-Xbatch -Jcomp=-Xcomp
 
              # Run the benchmark [limit to LUCENE/FSA5 and a single test file only.]
 java -jar -DtestFile=data-sets/sample-no-matches.txt -Dimplementation=LUCENE,FSA5             
